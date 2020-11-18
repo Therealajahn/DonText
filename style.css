@@ -1,0 +1,9 @@
+body{
+	display: grid;
+}
+textarea{
+	justify-self: center;
+        text-size: 100px;
+}
+
+
