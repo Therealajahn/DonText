@@ -1,3 +1,7 @@
+* {
+  overflow: hidden;
+}
+
 body {
   display: -ms-grid;
   display: grid;
@@ -9,9 +13,10 @@ body {
 #text-plate {
   -ms-grid-column-align: center;
       justify-self: center;
+  word-wrap: break-word;
   width: 80vw;
   height: 100vh;
-  font-size: 50px;
+  font-size: 150px;
   background: #3755AD;
 }
 /*# sourceMappingURL=style.css.map */

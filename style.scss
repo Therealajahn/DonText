@@ -1,7 +1,9 @@
 ///////////COLOR/////////////
 $base: #C3C53A;
 $second: #3755AD;
-
+*{
+    overflow: hidden;
+}
 
 body{
     display: grid;
@@ -9,15 +11,13 @@ body{
     padding: 0;
     margin: 0;
 }
-input{
-    // display:none;
-}
 
 #text-plate{
     justify-self: center;
+    word-wrap: break-word;
     width: 80vw;
     height: 100vh;
-    font-size: 50px;
+    font-size: 150px;
     background: $second;
 }
 
