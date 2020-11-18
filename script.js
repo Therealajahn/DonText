@@ -1,10 +1,8 @@
-
+let textPlate = document.getElementById('text-plate');
 
 function typeTextInADiv(){
  
-    let textPlate = document.getElementById('text-plate');
-   
-        document.addEventListener('keydown',(e)=>{
+           document.addEventListener('keydown',(e)=>{
             
             let keyCode = e.key.charCodeAt(0);
             console.log('keyCode', keyCode);
@@ -14,7 +12,7 @@ function typeTextInADiv(){
             }
             
             //press Ctrl to save a file
-            if(e.key === "Control"){
+            if(e.key === 'Control,'){
                 saveFile(textPlate.innerHTML);
             }
             
@@ -23,12 +21,27 @@ function typeTextInADiv(){
 }
 typeTextInADiv();
 
+function readLocalFile(){
+    let fileGetter = document.addEventListener('change',readText,false);
+    function readText(e){
+        let file = e.target.files[0];
+        console.log('file', file);
+        let reader = new FileReader();
+        reader.onload = (e)=>{
+             textPlate.innerHTML = e.target.result;
+              console.log('e.target.result', e.target.result);
+        }
+        reader.readAsText(file); 
+    }
+}
+readLocalFile();
+
 function saveFile(data, filename, type) {
     var file = new Blob([data], {type: type});
     if (window.navigator.msSaveOrOpenBlob) // IE10+
         window.navigator.msSaveOrOpenBlob(file, filename);
     else { // Others
-        var a = document.createElement("a"),
+        var a = document.createElement('a'),
                 url = URL.createObjectURL(file);
         a.href = url;
         a.download = filename;
@@ -41,33 +54,13 @@ function saveFile(data, filename, type) {
     }
 }
 
-function readSingleFile(e) {
-    var file = e.target.files[0];
-    if (!file) {
-      return;
-    }
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      var contents = e.target.result;
-      displayContents(contents);
-    };
-    reader.readAsText(file);
-  }
-  
-  function displayContents(contents) {
-    var element = document.getElementById('file-content');
-    element.textContent = contents;
-  }
-  
-  document.getElementById('file-input')
-    .addEventListener('change', readSingleFile, false);
+
 
 // function specialKeys(key){
 //     if(key === 'Enter'){
 //         return '/n'
 //     }
-// }
+// }"
 
-  function readLocalFile(){
-      
-  }
+
+  
