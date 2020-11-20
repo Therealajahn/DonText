@@ -1,25 +1,27 @@
 let textPlate = document.getElementById('text-plate');
 
-function typeTextInADiv(){
- 
-           document.addEventListener('keydown',(e)=>{
-            
-            let keyCode = e.key.charCodeAt(0);
-            console.log('keyCode', keyCode);
+function playButton(){
+    let leaves = document.getElementById('leaves');
+    let playButton = document.getElementById('play-button')
+    playButton.addEventListener('click',(e)=>{
+        leaves.play();
+    });
+    
+}
+playButton();
 
-            if(keyCode >= 32 && keyCode <= 127){
-                textPlate.innerHTML += e.key;
-            }
-            
+function listenForKeys(){
+ 
+            document.addEventListener('keydown',(e)=>{
             //press Ctrl to save a file
-            if(e.key === 'Control,'){
+            if(e.key === 'Control'){
                 saveFile(textPlate.innerHTML);
             }
             
         });
 
 }
-typeTextInADiv();
+listenForKeys();
 
 function readLocalFile(){
     let fileGetter = document.addEventListener('change',readText,false);
@@ -63,4 +65,8 @@ function saveFile(data, filename, type) {
 // }"
 
 
-  
+
+
+
+
+

@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style.css">	
-	<title>DonText</title>
-	<script src="script.js" defer></script>
-</head>
-<body>
-	
-	<input type="file">
-	<main id="text-plate"></main>
-	
-        
-</body>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>DonText</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<input type="file">
+		<button id="play-button">Play Video</button>
+			<div id="editor">
+				<div contenteditable="true" id="text-plate"></div>
+				
+				<video id="leaves" loop>
+					<source src="leaves(edited).mp4" type="video/mp4">
+				</video>
+		</div>
+
+	</body>
 </html>

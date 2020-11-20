@@ -1,24 +1,33 @@
-///////////COLOR/////////////
-$base: #C3C53A;
-$second: #3755AD;
-*{
-    overflow: hidden;
-}
-
 body{
-    display: grid;
-    background: $base;
-    padding: 0;
-    margin: 0;
+    background:black;
+    grid-template-areas: 'one';
+    
 }
-
+#editor{
+    display:grid;
+    justify-items: center;
+    align-items: center;
+    grid: 'one' 100vh / 100vw;
+}
 #text-plate{
-    justify-self: center;
-    word-wrap: break-word;
+    position: absolute;
     width: 80vw;
     height: 100vh;
-    font-size: 150px;
-    background: $second;
+    left:50%;
+    margin-left: -40vw;
+    z-index: 0;
+    background: rgba(52, 100, 5, 0.40);
+    color: white;
+    font-size: 200px;
 }
-
-
+video{
+    position: absolute;
+    left:50%;
+    width: 80vw;
+    height: 100vh;
+    margin-left: -40vw; 
+    z-index: -10;
+}
+file[type=file]{
+    color:white;
+}
