@@ -1,28 +1,52 @@
+// User Controls
+
+////Video Control
 let textPlate = document.getElementById('text-plate');
 
 function playButton(){
-    let leaves = document.getElementById('leaves');
+    let video = document.querySelector('video');
+    // video.muted = true;
+
     let playButton = document.getElementById('play-button')
+    let videoPlaying = false;
     playButton.addEventListener('click',(e)=>{
-        leaves.play();
+        
+        if(!videoPlaying){
+        video.play();
+        videoPlaying = true;
+        playButton.innerHTML = 'Pause Video';
+        }else{
+            video.pause();
+            videoPlaying = false;
+            playButton.innerHTML = 'Play Video';
+        }
+
     });
-    
 }
 playButton();
+toggleValueAndUI({element:"yes"});
+function toggleValueAndUI(arg){
+    console.log('arg',arg);
+    // arg.element.addEventListener('click',(e)=>{
+        
+    //     if(!videoPlaying){
+    //     video.play();
+    //     videoPlaying = true;
+    //     playButton.innerHTML = 'Pause Video';
+    //     }else{
+    //         video.pause();
+    //         videoPlaying = false;
+    //         playButton.innerHTML = 'Play Video';
+    //     }
 
-function listenForKeys(){
- 
-            document.addEventListener('keydown',(e)=>{
-            //press Ctrl to save a file
-            if(e.key === 'Control'){
-                saveFile(textPlate.innerHTML);
-            }
-            
-        });
-
+    // });
 }
-listenForKeys();
 
+
+
+//File Operations
+
+////Read Operations
 function readLocalFile(){
     let fileGetter = document.addEventListener('change',readText,false);
     function readText(e){
@@ -38,11 +62,31 @@ function readLocalFile(){
 }
 readLocalFile();
 
+////Save Operations
+function userInputSaveFile(){
+    //NOTE: this can be abstracted to streamline future
+    //shortcuts
+    let keyHeld = {'Control':false, 's':false};
+    document.addEventListener('keydown',(e)=>{
+        console.log('e.key', e.key)
+        if(e.key in keyHeld){
+            keyHeld[e.key] = true;
+            //press Control + S to save
+            if(keyHeld['Control'] && key['s']){ 
+               saveFile(textPlate.innerHTML);
+            }
+        }
+    
+});
+
+}
+userInputSaveFile();
+
 function saveFile(data, filename, type) {
     var file = new Blob([data], {type: type});
-    if (window.navigator.msSaveOrOpenBlob) // IE10+
+    if (window.navigator.msSaveOrOpenBlob) 
         window.navigator.msSaveOrOpenBlob(file, filename);
-    else { // Others
+    else { 
         var a = document.createElement('a'),
                 url = URL.createObjectURL(file);
         a.href = url;
@@ -55,6 +99,11 @@ function saveFile(data, filename, type) {
         }, 0); 
     }
 }
+
+
+
+
+
 
 
 
