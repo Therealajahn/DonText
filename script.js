@@ -58,11 +58,6 @@ function saveFile(data, filename, type) {
 
 
 
-// function specialKeys(key){
-//     if(key === 'Enter'){
-//         return '/n'
-//     }
-// }"
 
 
 
