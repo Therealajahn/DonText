@@ -23,24 +23,23 @@ function controlVideo(){
             }
             console.log('playBUtton:',playButton);
        });
-       changeVideoURL(playButton);
     }
     togglePlayButton();
 
-    function changeVideoURL(playButton){
+    function embedNewVideo(){
+        let editor = document.getElementById('editor');
         let changeVideo = document.getElementById('change-video');
-        let videoUrl = document.getElementById('video-url');
-        console.log('playBUtton:',playButton);
+        let videoEmbed = document.getElementById('video-embed');
         changeVideo.addEventListener('click',(e)=>{
-            console.log('videoUrl', document.getElementById('video-url').value);
-            video.src = videoUrl.value;
-            video.play();
-            videoPlaying = true;
-            playButton.innerHTML = 'Pause Video'; 
+             //get text from input, append to innerhtml
+            editor.innerHTML += videoEmbed.value;
+            console.log('videoEmbed.value', videoEmbed.value)
+            console.log('editor.innerHTML', editor.innerHTML)
+            
         })
-        
     }
-
+    embedNewVideo();
+    
     function muteButton(){
         let muteButton = document.getElementById('mute-button')
         muteButton.addEventListener('click',(e)=>{
