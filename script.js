@@ -3,51 +3,75 @@
 ////Video Control
 let textPlate = document.getElementById('text-plate');
 
-function playButton(){
+function controlVideo(){
     let video = document.querySelector('video');
-    // video.muted = true;
-
-    let playButton = document.getElementById('play-button')
     let videoPlaying = false;
-    playButton.addEventListener('click',(e)=>{
-        
+    let videoMuted = false;
+    
+    function togglePlayButton(){
+       let playButton = document.getElementById('play-button');
+      
+       playButton.addEventListener('click',(e)=>{
         if(!videoPlaying){
-        video.play();
-        videoPlaying = true;
-        playButton.innerHTML = 'Pause Video';
-        }else{
-            video.pause();
-            videoPlaying = false;
-            playButton.innerHTML = 'Play Video';
-        }
+            video.play();
+            videoPlaying = true;
+            playButton.innerHTML = 'Pause Video';
+            }else{
+                video.pause();
+                videoPlaying = false;
+                playButton.innerHTML = 'Play Video';
+            }
+            console.log('playBUtton:',playButton);
+       });
+       changeVideoURL(playButton);
+    }
+    togglePlayButton();
 
-    });
-}
-playButton();
-toggleValueAndUI({element:"yes"});
-function toggleValueAndUI(arg){
-    console.log('arg',arg);
-    // arg.element.addEventListener('click',(e)=>{
+    function changeVideoURL(playButton){
+        let changeVideo = document.getElementById('change-video');
+        let videoUrl = document.getElementById('video-url');
+        console.log('playBUtton:',playButton);
+        changeVideo.addEventListener('click',(e)=>{
+            console.log('videoUrl', document.getElementById('video-url').value);
+            video.src = videoUrl.value;
+            video.play();
+            videoPlaying = true;
+            playButton.innerHTML = 'Pause Video'; 
+        })
         
-    //     if(!videoPlaying){
-    //     video.play();
-    //     videoPlaying = true;
-    //     playButton.innerHTML = 'Pause Video';
-    //     }else{
-    //         video.pause();
-    //         videoPlaying = false;
-    //         playButton.innerHTML = 'Play Video';
-    //     }
+    }
 
-    // });
+    function muteButton(){
+        let muteButton = document.getElementById('mute-button')
+        muteButton.addEventListener('click',(e)=>{
+            
+            if(!videoMuted){
+            video.muted = true;
+            videoMuted = true;
+            muteButton.innerHTML = 'Unmute Video';
+            }else{
+                video.muted = false;
+                videoMuted = false;
+                muteButton.innerHTML = 'Mute Video';
+            }
+
+        });
+    }
+    muteButton();
+
+   
+    
+    
+  
 }
+controlVideo();
 
 
 
 //File Operations
 
-////Read Operations
-function readLocalFile(){
+////READ
+function userReadLocalFile(){
     let fileGetter = document.addEventListener('change',readText,false);
     function readText(e){
         let file = e.target.files[0];
@@ -60,10 +84,11 @@ function readLocalFile(){
         reader.readAsText(file); 
     }
 }
-readLocalFile();
+// userReadLocalFile();
 
-////Save Operations
+////WRITE 
 function userInputSaveFile(){
+    function keyInputSaveFile(){
     //NOTE: this can be abstracted to streamline future
     //shortcuts
     let keyHeld = {'Control':false, 's':false};
@@ -76,9 +101,16 @@ function userInputSaveFile(){
                saveFile(textPlate.innerHTML);
             }
         }
-    
-});
+        })
+    }
 
+    function buttonSaveFile(){
+        let saveButton = document.getElementById('save-button');
+        saveButton.addEventListener('click',(e)=>{
+            saveFile(textPlate.innerHTML);
+        })
+    }    
+    buttonSaveFile()
 }
 userInputSaveFile();
 
